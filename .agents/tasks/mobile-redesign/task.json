@@ -1,0 +1,12 @@
+{
+  "task_id": "task-mobile-redesign",
+  "task_description": "Complete mobile-first redesign of ZPPS SRP Camp Solapur school website with improved UX for elderly principal admin and mobile users",
+  "status": "pending",
+  "feature_order": [
+    "FEAT-001",
+    "FEAT-002",
+    "FEAT-003",
+    "FEAT-004"
+  ],
+  "blocked_reason": null
+}

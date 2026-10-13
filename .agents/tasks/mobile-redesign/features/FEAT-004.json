@@ -1,0 +1,47 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Redesign Admin page for mobile-optimized content management with simplified UI for elderly principal: larger tap targets, bottom sheet navigation, improved image upload UX with clearer instructions and preview, and better form layouts. Depends on FEAT-001 for UI components.",
+  "status": "pending",
+  "steps": [
+    "1. Redesign Admin page layout in src/pages/Admin.tsx: Replace horizontal tab navigation with bottom sheet drawer for mobile (Sheet component from FEAT-001). Add floating action button in bottom-right corner (fixed bottom-4 right-4) with Menu icon to open drawer. Drawer shows all 6 sections as large vertical list with icons and descriptions.",
+    "2. Simplify section headers: Larger text (text-2xl md:text-3xl), add emoji icons for visual recognition by elderly users (📢 Notices, ⭐ Highlights, 📅 History, 🖼️ Photos, 📋 Admissions, ✉️ Messages already exist).",
+    "3. Improve ImageSettings section UX: Add step-by-step numbered instructions above each upload area ('Step 1: Click the box below', 'Step 2: Choose a photo', 'Step 3: Wait for upload'). Larger image previews (max-w-md instead of max-w-xs). Show loading spinner overlay during upload with percentage if possible. Success checkmark animation after upload completes (motion library).",
+    "4. Enhance ImageUpload component in src/components/ImageUpload.tsx: Add larger drag-drop zone (min-h-48 instead of default padding). Show current image in larger preview (16:9 aspect ratio container). Add descriptive labels like 'Current Photo' and 'Upload New Photo'. Bigger upload icon (w-16 h-16). Clearer error messages in simple language ('Photo too big. Try a smaller one.' instead of technical jargon).",
+    "5. Improve form layouts in all admin sections: Larger inputs (py-4 text-lg), bigger buttons (py-4 px-8 text-lg), more spacing between form fields (space-y-6 instead of space-y-4). Use green button color (#10b981) for 'Add' actions to distinguish from delete (red).",
+    "6. Add confirmation dialogs for all delete actions: Replace window.confirm with custom Dialog component from FEAT-001. Show item preview in dialog with large text explaining what will be deleted. Two buttons: 'Cancel' (outline) and 'Delete' (red, bg-red-600).",
+    "7. Optimize tables/lists on mobile: Make notice/highlight/timeline lists vertical cards instead of table-like rows. Each card full-width with large text, clear action buttons at bottom. Add visual separators between cards.",
+    "8. Add helper text throughout: Below each form field, add small gray text explaining what to enter ('Example: 15' for day, 'Example: Computer Lab' for highlight title). Use simple, non-technical language."
+  ],
+  "acceptance_criteria": [
+    "Admin page has floating menu button on mobile that opens bottom Sheet drawer with all 6 sections listed",
+    "Each admin section has large emoji icon and clear heading",
+    "Image upload areas show numbered step-by-step instructions above them",
+    "Image previews display larger (max-w-md) with clear 'Current Photo' label",
+    "Upload zone has larger drag-drop area (min-h-48) with bigger icon (w-16 h-16)",
+    "All form inputs are large (py-4 text-lg) with helper text below explaining what to enter",
+    "Add buttons are green (#10b981), Delete buttons are red (#dc2626)",
+    "Delete actions show custom Dialog confirmation with item preview, not browser window.confirm",
+    "Notice/highlight/timeline lists display as full-width vertical cards on mobile with clear spacing",
+    "All admin actions have minimum 44px touch targets"
+  ],
+  "verification": [
+    "Run: npm run build",
+    "Expected: Build succeeds with no errors",
+    "Run: npm run dev and navigate to /admin route (login required):",
+    "Mobile viewport (375px width):",
+    "- Verify floating menu button appears in bottom-right corner",
+    "- Tap menu button and verify Sheet drawer slides up from bottom with 6 sections listed",
+    "- Tap 'Photos' section and verify numbered instructions appear above each upload area",
+    "- Verify current photo preview is large and clearly labeled",
+    "- Drag a test image onto upload zone and verify large drop area, loading spinner, success animation",
+    "- Go to Notices section, tap 'Add This Notice', verify large inputs and helper text",
+    "- Verify green Add button and helper text below each field",
+    "- Tap delete icon on any notice, verify custom Dialog shows (not browser alert) with preview",
+    "- Verify all cards are full-width vertical layout, easy to tap",
+    "Desktop viewport (1024px width):",
+    "- Verify tab navigation works as before for desktop users"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

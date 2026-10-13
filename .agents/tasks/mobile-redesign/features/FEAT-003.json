@@ -1,0 +1,40 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Redesign all public-facing pages (Home, Achievements, Facilities, Contact, Admission) for mobile-first responsive experience with improved layouts, larger touch targets, and better visual hierarchy. Depends on FEAT-001 for UI components and FEAT-002 for navigation.",
+  "status": "pending",
+  "steps": [
+    "1. Redesign src/pages/Home.tsx: Hero section with logo overlay on school image, responsive typography (text-4xl md:text-6xl). Replace 4-column stat cards with 2x2 grid on mobile (grid-cols-2 md:grid-cols-4). Notice board cards with horizontal scroll on mobile (overflow-x-auto snap-x). Highlights section as vertical stack on mobile, 2-col grid on tablet. Use motion library for subtle entrance animations.",
+    "2. Redesign src/pages/Achievements.tsx: Vertical timeline with large year badges on mobile. Change from horizontal alternating layout to single vertical column on mobile with year nodes (w-16 h-16) on left, cards on right. On desktop (md:), keep alternating left/right layout. Use motion library for scroll-triggered animations. Marathi text (font-marathi) for translated content.",
+    "3. Redesign src/pages/Facilities.tsx: Change from 3-column grid to single column stack on mobile (grid-cols-1 md:grid-cols-2 lg:grid-cols-3). Larger facility icons (w-10 h-10 instead of w-7 h-7). Add Marathi translations below each facility name using font-marathi. Mid-day meal section: make image full-width on mobile, side-by-side on desktop.",
+    "4. Redesign src/pages/Contact.tsx: Form becomes full-width single column on mobile. Contact info cards stack vertically. Add WhatsApp quick contact button with floating action style (fixed bottom-right on mobile, large 56x56px circle with WhatsApp icon). Phone and email use click-to-call/email links. Map section responsive height (h-64 md:h-96).",
+    "5. Redesign src/pages/Admission.tsx: Multi-step wizard interface for mobile. Create 4-step flow: (1) Student Info, (2) Parent Info, (3) Address, (4) Review & Submit. Show progress indicator at top (1/4, 2/4, etc). Large form inputs (py-4 text-lg) for easy mobile typing. Inline validation with error messages below fields. Success screen with large checkmark and next steps. Store form state in useState, validate on each step before advancing. Add 'Previous' and 'Next' buttons at bottom of each step (except first/last).",
+    "6. Add PWA manifest file: Create public/manifest.json with app metadata (name: 'ZPPS SRP Camp Solapur', short_name: 'ZPPS SRP Camp', start_url: '/', display: 'standalone', background_color: '#f4faff', theme_color: '#000666', icons array with placeholder icon references). Add manifest link tag to index.html.",
+    "7. Update all pages to use consistent mobile padding (px-4 md:px-10), section spacing (space-y-8 md:space-y-16), and heading sizes (text-3xl md:text-5xl for h1, text-2xl md:text-4xl for h2)"
+  ],
+  "acceptance_criteria": [
+    "Home page hero displays logo overlay, notice cards scroll horizontally on mobile with snap points",
+    "Home page stat cards show 2x2 grid on mobile, 4 columns on desktop",
+    "Achievements timeline is single-column vertical on mobile with left-aligned year badges, alternating on desktop",
+    "Facilities grid stacks as single column on mobile, 2-3 columns on desktop, with Marathi translations visible",
+    "Contact form is full-width single column on mobile, WhatsApp FAB appears in bottom-right corner",
+    "Admission page shows multi-step wizard with progress indicator (4 steps total), large touch-friendly inputs, working Previous/Next navigation between steps",
+    "All form inputs are minimum 44px tall with text-base or larger font size",
+    "manifest.json exists in public/ with correct metadata and is linked in HTML",
+    "Consistent mobile-first spacing and typography across all pages"
+  ],
+  "verification": [
+    "Run: npm run build",
+    "Expected: Build succeeds with no TypeScript errors",
+    "Run: npm run dev and test in browser DevTools mobile viewport (375px width):",
+    "- Home: Scroll notice cards horizontally with snap, verify 2x2 stat grid",
+    "- Achievements: Verify vertical timeline with year badges on left side",
+    "- Facilities: Verify single column stack, Marathi text displays correctly",
+    "- Contact: Verify form is full-width, tap WhatsApp FAB, tap phone/email links work",
+    "- Admission: Complete full 4-step wizard flow, verify progress indicator updates, test Previous/Next buttons, submit form and see success screen",
+    "- Desktop (1024px width): Verify responsive layouts expand to multi-column grids",
+    "- Check public/manifest.json exists and is valid JSON"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
