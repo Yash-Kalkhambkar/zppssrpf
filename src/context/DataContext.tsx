@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { uploadImage, deleteImage } from '../lib/imageUpload';
 
 export interface Notice {
   id: string;
@@ -56,6 +57,7 @@ interface DataContextType extends DataState {
   deleteTimelineEvent: (id: string) => Promise<void>;
 
   updateImage: (key: keyof Images, url: string) => Promise<void>;
+  uploadAndUpdateImage: (key: keyof Images, file: File) => Promise<{ success: boolean; error?: string }>;
 }
 
 const defaultData: DataState = {
@@ -324,6 +326,49 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const uploadAndUpdateImage = async (key: keyof Images, file: File): Promise<{ success: boolean; error?: string }> => {
+    // Map image keys to folder names
+    const folderMap: Record<keyof Images, string> = {
+      heroBg: 'heroBg',
+      aboutImg: 'aboutImg',
+      facilityMain: 'facilityMain',
+      midDayMeal: 'midDayMeal',
+      principal: 'principal'
+    };
+    const folder = folderMap[key];
+
+    try {
+      // Upload new image
+      const result = await uploadImage(file, folder);
+      
+      if (!result.success) {
+        return { success: false, error: result.error };
+      }
+
+      // Delete old image if it's from our storage
+      const oldUrl = data.images[key];
+      if (oldUrl && oldUrl.includes('school-images')) {
+        try {
+          await deleteImage(oldUrl);
+        } catch (err) {
+          // Don't fail if delete fails - just log it
+          console.warn('Failed to delete old image:', err);
+        }
+      }
+
+      // Update database with new URL
+      await updateImage(key, result.url!);
+
+      return { success: true };
+    } catch (err: any) {
+      console.error('Upload and update error:', err);
+      return {
+        success: false,
+        error: err.message || 'Failed to upload photo. Please try again.'
+      };
+    }
+  };
+
   return (
     <DataContext.Provider value={{
       ...data,
@@ -331,7 +376,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       updateNotice, addNotice, deleteNotice,
       updateHighlight, addHighlight, deleteHighlight,
       updateTimelineEvent, addTimelineEvent, deleteTimelineEvent,
-      updateImage
+      updateImage,
+      uploadAndUpdateImage
     }}>
       {children}
     </DataContext.Provider>
