@@ -1,5 +1,6 @@
 import { School, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import logo from '../../assets/zpps-logo.png';
 
 interface FooterProps {
   navigate?: (route: string) => void;
@@ -14,9 +15,7 @@ export function Footer({ navigate }: FooterProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 px-6 md:px-10 py-12 md:py-16 w-full max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
-            <div className="bg-white/10 p-2 rounded-lg">
-              <School className="w-7 h-7" />
-            </div>
+            <img src={logo} alt="ZPPS SRP CAMP Logo" className="w-12 h-12 object-contain bg-white/10 p-1.5 rounded-lg" />
             <span className="font-headline-md text-headline-md text-on-primary dark:text-on-primary-container tracking-tight">
               ZPPS SRP CAMP
             </span>
@@ -64,15 +63,16 @@ export function Footer({ navigate }: FooterProps) {
             </p>
           </div>
           
-          {/* Phone */}
+          {/* Phone - Kalkhambkar Sir */}
           <a 
-            href="tel:+912172345678"
+            href="tel:+919850899572"
             className="flex items-center gap-3 opacity-80 hover:opacity-100 bg-white/5 p-4 rounded-xl border border-white/10 transition-all hover:bg-white/10 cursor-pointer"
           >
             <Phone className="w-5 h-5 shrink-0" />
-            <span className="font-body-md text-body-md text-[14px]">
-              {t('footer.phone')}
-            </span>
+            <div className="flex flex-col">
+              <span className="font-body-md text-body-md text-[14px]">+91 98508 99572</span>
+              <span className="font-caption text-[12px] opacity-70">Kalkhambkar Sir</span>
+            </div>
           </a>
           
           {/* Email */}
@@ -88,7 +88,7 @@ export function Footer({ navigate }: FooterProps) {
           
           {/* WhatsApp */}
           <a 
-            href="https://wa.me/912172345678"
+            href="https://wa.me/919850899572"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 opacity-80 hover:opacity-100 bg-white/5 p-4 rounded-xl border border-white/10 transition-all hover:bg-white/10 cursor-pointer"
