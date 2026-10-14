@@ -47,11 +47,9 @@ export function Header({ currentRoute, navigate }: HeaderProps) {
               </span>
             </div>
           </div>
-          {/* Desktop: existing layout */}
+          {/* Desktop: logo image with text */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="bg-primary/5 p-2 rounded-xl group-hover:bg-primary/10 transition-colors">
-              <School className="text-primary w-8 h-8 stroke-[1.5]" />
-            </div>
+            <img src={logo} alt="ZPPS SRP CAMP Logo" className="w-12 h-12 object-contain bg-primary/5 p-1.5 rounded-xl group-hover:bg-primary/10 transition-colors" />
             <span className="text-[26px] font-serif font-bold text-primary tracking-tight pt-1">
               ZPPS SRP CAMP
             </span>
