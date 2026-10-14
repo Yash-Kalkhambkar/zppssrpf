@@ -1,10 +1,13 @@
 import { School, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface FooterProps {
   navigate?: (route: string) => void;
 }
 
 export function Footer({ navigate }: FooterProps) {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full mt-auto relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -19,47 +22,45 @@ export function Footer({ navigate }: FooterProps) {
             </span>
           </div>
           <p className="font-body-md text-body-md text-on-primary dark:text-on-primary-container opacity-80 max-w-xs mt-4 leading-relaxed">
-            Providing quality education and fostering holistic development in Solapur North since 1992.
+            {t('footer.about')}
           </p>
           <div className="mt-8 pt-8 border-t border-white/20 md:border-none md:pt-12">
             <p className="font-body-md text-body-md text-[13px] opacity-60">
-              © 2024 ZPPS SRP CAMP, Solapur North. All Rights Reserved.
+              {t('footer.copyright')}
             </p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 md:pl-12">
           <h4 className="font-label-md text-[13px] uppercase tracking-[0.15em] text-white/50 mb-4 font-bold">
-            Important Links
+            {t('footer.importantLinks')}
           </h4>
           <nav className="flex flex-col gap-4">
             <a href="#" className="font-label-md text-label-md text-on-primary dark:text-on-primary-container opacity-80 hover:opacity-100 hover:translate-x-1 transition-all w-fit focus:ring-2 focus:ring-secondary-fixed focus:ring-offset-2">
-              RTE Portal
+              {t('footer.rtePortal')}
             </a>
             <a href="#" className="font-label-md text-label-md text-on-primary dark:text-on-primary-container opacity-80 hover:opacity-100 hover:translate-x-1 transition-all w-fit focus:ring-2 focus:ring-secondary-fixed focus:ring-offset-2">
-              Shala Darpan
+              {t('footer.shalaDarpan')}
             </a>
             <button 
               onClick={() => navigate?.('admin')}
               className="font-label-md text-label-md text-on-primary dark:text-on-primary-container opacity-80 hover:opacity-100 hover:translate-x-1 transition-all w-fit focus:ring-2 focus:ring-secondary-fixed focus:ring-offset-2 cursor-pointer text-left"
             >
-              Staff Login
+              {t('footer.staffLogin')}
             </button>
           </nav>
         </div>
 
         <div className="flex flex-col gap-4">
           <h4 className="font-label-md text-[13px] uppercase tracking-[0.15em] text-white/50 mb-4 font-bold">
-            Contact
+            {t('footer.contact')}
           </h4>
           
           {/* Address */}
           <div className="flex items-start gap-3 opacity-80 bg-white/5 p-4 rounded-xl border border-white/10">
             <MapPin className="w-5 h-5 mt-0.5 shrink-0" />
-            <p className="font-body-md text-body-md text-[14px] leading-relaxed">
-              ZPPS SRP CAMP,<br />
-              Solapur North Block,<br />
-              Solapur District, Maharashtra 413008
+            <p className="font-body-md text-body-md text-[14px] leading-relaxed whitespace-pre-line">
+              {t('footer.address')}
             </p>
           </div>
           
@@ -70,7 +71,7 @@ export function Footer({ navigate }: FooterProps) {
           >
             <Phone className="w-5 h-5 shrink-0" />
             <span className="font-body-md text-body-md text-[14px]">
-              +91 217 234 5678
+              {t('footer.phone')}
             </span>
           </a>
           
@@ -81,7 +82,7 @@ export function Footer({ navigate }: FooterProps) {
           >
             <Mail className="w-5 h-5 shrink-0" />
             <span className="font-body-md text-body-md text-[14px]">
-              zpps.srp.camp@education.gov.in
+              {t('footer.email')}
             </span>
           </a>
           
@@ -94,7 +95,7 @@ export function Footer({ navigate }: FooterProps) {
           >
             <MessageCircle className="w-5 h-5 shrink-0" />
             <span className="font-body-md text-body-md text-[14px]">
-              WhatsApp Us
+              {t('footer.whatsapp')}
             </span>
           </a>
         </div>

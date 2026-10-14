@@ -6,3 +6,12 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Documentation and workflow artifacts
+*.md
+!README.md
+.agents/
+
+# Vercel
+.vercel
+.vercel/*

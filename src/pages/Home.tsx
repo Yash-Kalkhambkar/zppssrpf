@@ -1,5 +1,6 @@
-import { ArrowRight, Megaphone, Users, History, Languages, DoorClosed, ChevronDown, Monitor, Utensils, Goal, Star, LucideIcon } from 'lucide-react';
+import { ArrowRight, Megaphone, Users, History, Languages, DoorClosed, Monitor, Utensils, Goal, Star, LucideIcon } from 'lucide-react';
 import { useData } from '../context/DataContext';
+import { useTranslation } from '../hooks/useTranslation';
 import * as Icons from 'lucide-react';
 
 interface HomeProps {
@@ -8,6 +9,7 @@ interface HomeProps {
 
 export function Home({ navigate }: HomeProps) {
   const { notices, highlights, images } = useData();
+  const { t } = useTranslation();
 
   const getIcon = (iconName: string): LucideIcon => {
     const Icon = (Icons as any)[iconName];
@@ -15,9 +17,9 @@ export function Home({ navigate }: HomeProps) {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-20 md:pb-0">
       {/* Hero Section - mobile-first with responsive typography */}
-      <section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center bg-surface-container-high overflow-hidden">
+      <section className="relative w-full min-h-screen flex items-center justify-center bg-surface-container-high overflow-hidden pb-12">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 opacity-40 mix-blend-multiply"
           style={{ backgroundImage: `url('${images.heroBg}')` }}
@@ -30,63 +32,60 @@ export function Home({ navigate }: HomeProps) {
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-headline-lg-mobile md:font-display-lg text-primary max-w-5xl mb-6 leading-tight">
-            ZPPS SRP CAMP: संस्कार आणि शिक्षणाचे माहेरघर
+            {t('home.heroTitle')}
           </h1>
           <h2 className="font-headline-md text-headline-md text-on-surface-variant max-w-3xl mb-10 font-normal">
-            जि. प. प्रा. शाळा एसआरपी कॅम्प, सोलापूर उत्तर
+            {t('home.heroSubtitle')}
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2 w-full sm:w-auto">
             <button 
               onClick={() => navigate('admission')}
               className="font-label-md text-label-md bg-secondary-container text-white px-8 py-3.5 rounded-lg flex items-center justify-center gap-2 hover:bg-secondary transition-all shadow-sm focus:ring-2 focus:ring-secondary-container focus:ring-offset-2 cursor-pointer w-full sm:w-auto"
             >
-              Admission Open / प्रवेश सुरू
+              {t('home.admissionButton')}
               <ArrowRight className="w-[18px] h-[18px]" />
             </button>
             <button 
               onClick={() => navigate('facilities')}
               className="font-label-md text-label-md bg-surface-container-lowest border border-outline-variant text-primary px-8 py-3.5 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-bright transition-all shadow-sm focus:ring-2 focus:ring-secondary-container focus:ring-offset-2 cursor-pointer w-full sm:w-auto"
             >
-              View Facilities
+              {t('home.facilitiesButton')}
             </button>
           </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary opacity-60 animate-bounce">
-          <ChevronDown className="w-6 h-6" />
         </div>
       </section>
 
       {/* Quick Stats Container - 2x2 grid on mobile, 4 columns on desktop */}
-      <section className="w-full bg-surface py-8 border-b border-outline-variant relative z-20 -mt-12">
+      <section className="w-full bg-surface py-8 border-b border-outline-variant relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 bg-surface-container-lowest p-6 md:p-8 rounded-xl border border-outline-variant shadow-sm">
             <div className="flex flex-col items-center text-center p-2">
               <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-4 text-secondary-container">
                 <Users className="w-7 h-7 fill-current" />
               </div>
-              <span className="font-headline-md text-headline-md text-primary">Grades 1-7</span>
-              <span className="font-caption text-caption text-on-surface-variant mt-1">Primary Education</span>
+              <span className="font-headline-md text-headline-md text-primary">{t('home.stats.grades')}</span>
+              <span className="font-caption text-caption text-on-surface-variant mt-1">{t('home.stats.gradesLabel')}</span>
             </div>
             <div className="flex flex-col items-center text-center p-2">
               <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-4 text-secondary-container">
                 <History className="w-7 h-7 fill-current" />
               </div>
-              <span className="font-headline-md text-headline-md text-primary">1992</span>
-              <span className="font-caption text-caption text-on-surface-variant mt-1">Year Established</span>
+              <span className="font-headline-md text-headline-md text-primary">{t('home.stats.established')}</span>
+              <span className="font-caption text-caption text-on-surface-variant mt-1">{t('home.stats.establishedLabel')}</span>
             </div>
             <div className="flex flex-col items-center text-center p-2">
               <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-4 text-secondary-container">
                 <Languages className="w-7 h-7 fill-current" />
               </div>
-              <span className="font-headline-md text-headline-md text-primary">Marathi</span>
-              <span className="font-caption text-caption text-on-surface-variant mt-1">Medium of Instruction</span>
+              <span className="font-headline-md text-headline-md text-primary">{t('home.stats.medium')}</span>
+              <span className="font-caption text-caption text-on-surface-variant mt-1">{t('home.stats.mediumLabel')}</span>
             </div>
             <div className="flex flex-col items-center text-center p-2">
               <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-4 text-secondary-container">
                 <DoorClosed className="w-7 h-7 fill-current" />
               </div>
-              <span className="font-headline-md text-headline-md text-primary">9</span>
-              <span className="font-caption text-caption text-on-surface-variant mt-1">Classrooms</span>
+              <span className="font-headline-md text-headline-md text-primary">{t('home.stats.classrooms')}</span>
+              <span className="font-caption text-caption text-on-surface-variant mt-1">{t('home.stats.classroomsLabel')}</span>
             </div>
           </div>
         </div>
@@ -97,22 +96,22 @@ export function Home({ navigate }: HomeProps) {
         <div className="max-w-7xl mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="flex flex-col gap-6">
             <div className="inline-flex px-3 py-1.5 bg-surface-container-low text-secondary-container font-label-md text-label-md rounded border border-outline-variant w-fit shadow-sm">
-              About Our Institution
+              {t('home.about.badge')}
             </div>
             <h2 className="text-3xl md:text-5xl font-headline-lg-mobile md:font-headline-lg text-primary leading-tight">
-              Empowering the Future in Solapur North
+              {t('home.about.title')}
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              ZPPS SRP CAMP is a distinguished local body managed educational institution nestled in the urban heart of Solapur North. Since our establishment, we have been dedicated to providing accessible, high-quality education through the Marathi medium.
+              {t('home.about.desc1')}
             </p>
             <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              We believe in a holistic approach to student development, ensuring our campus is not just a place of academic rigor, but a nurturing community where young minds can thrive safely and confidently.
+              {t('home.about.desc2')}
             </p>
             <button 
                 onClick={() => navigate('achievements')}
                 className="font-label-md text-label-md text-secondary-container hover:text-secondary flex items-center gap-2 w-fit mt-4 group cursor-pointer transition-colors"
             >
-              Read Full History
+              {t('home.about.readMore')}
               <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -133,7 +132,7 @@ export function Home({ navigate }: HomeProps) {
           <div className="flex flex-col">
             <h3 className="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-3">
               <Megaphone className="text-secondary-container w-6 h-6 fill-current" />
-              Notice Board
+              {t('home.notices.title')}
             </h3>
             {/* Mobile: horizontal scroll with snap */}
             <div className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-4">
@@ -169,7 +168,7 @@ export function Home({ navigate }: HomeProps) {
                 </div>
               ))}
               <div className="p-4 text-center font-label-md text-label-md text-secondary-container bg-surface border-t border-outline-variant hover:bg-surface-bright transition-colors block cursor-pointer">
-                View All Notices
+                {t('home.notices.viewAll')}
               </div>
             </div>
           </div>
@@ -178,7 +177,7 @@ export function Home({ navigate }: HomeProps) {
           <div className="flex flex-col">
             <h3 className="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-3">
               <Goal className="text-secondary-container w-6 h-6 fill-current" />
-              Campus Highlights
+              {t('home.highlights.title')}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
               {highlights.map((h, i) => {

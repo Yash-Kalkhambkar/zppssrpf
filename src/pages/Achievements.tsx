@@ -5,7 +5,7 @@ export function Achievements() {
   const { timelineEvents } = useData();
 
   return (
-    <div className="pt-20 flex-grow bg-background">
+    <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background">
       {/* Hero Section */}
       <section className="bg-surface-container py-8 md:py-16 px-4 md:px-10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 text-center">

@@ -44,7 +44,7 @@ export function Contact({ navigate }: ContactProps) {
   };
 
   return (
-    <div className="pt-20 flex-grow bg-background flex flex-col">
+    <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background flex flex-col">
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-16">
         {/* Page Header */}
         <div className="mb-8 md:mb-12">

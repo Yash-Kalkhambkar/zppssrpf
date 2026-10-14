@@ -117,7 +117,7 @@ export function Admission() {
 
   if (success) {
     return (
-      <div className="pt-20 flex-grow bg-background flex flex-col">
+      <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background flex flex-col">
         <main className="flex-grow w-full max-w-3xl mx-auto px-4 md:px-10 py-8 md:py-16">
           <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-8 md:p-16 shadow-sm text-center">
             <div className="w-20 h-20 bg-secondary-container text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
@@ -157,7 +157,7 @@ export function Admission() {
   }
 
   return (
-    <div className="pt-20 flex-grow bg-background flex flex-col">
+    <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background flex flex-col">
       <main className="flex-grow w-full max-w-4xl mx-auto px-4 md:px-10 py-8 md:py-16">
         <div className="mb-8 md:mb-12 text-center">
           <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 leading-tight">Admission Form</h1>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { School, ArrowRight, Menu, X } from 'lucide-react';
-import { Sheet, SheetContent } from './ui/sheet';
+import React from 'react';
+import { School, ArrowRight } from 'lucide-react';
 import logo from '../../assets/zpps-logo.png';
+import { useTranslation } from '../hooks/useTranslation';
+import { LanguageToggle } from './LanguageToggle';
 
 interface HeaderProps {
   currentRoute: string;
@@ -9,13 +10,13 @@ interface HeaderProps {
 }
 
 export function Header({ currentRoute, navigate }: HeaderProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navItems = [
-    { label: 'Home', route: 'home' },
-    { label: 'About Us', route: 'about' },
-    { label: 'Facilities', route: 'facilities' },
-    { label: 'Contact', route: 'contact' },
+    { label: t('common.home'), route: 'home' },
+    { label: t('common.about'), route: 'about' },
+    { label: t('common.facilities'), route: 'facilities' },
+    { label: t('common.contact'), route: 'contact' },
   ];
 
   // We map 'about' to 'achievements' page to show the timeline
@@ -26,7 +27,6 @@ export function Header({ currentRoute, navigate }: HeaderProps) {
     } else {
         navigate(route);
     }
-    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -35,10 +35,7 @@ export function Header({ currentRoute, navigate }: HeaderProps) {
         {/* Logo - Different layouts for mobile and desktop */}
         <div 
           className="flex items-center gap-3 cursor-pointer group"
-          onClick={() => {
-            navigate('home');
-            setIsMobileMenuOpen(false);
-          }}
+          onClick={() => navigate('home')}
         >
           {/* Mobile: compact logo with bilingual text */}
           <div className="flex items-center gap-2 md:hidden">
@@ -59,6 +56,11 @@ export function Header({ currentRoute, navigate }: HeaderProps) {
               ZPPS SRP CAMP
             </span>
           </div>
+        </div>
+
+        {/* Mobile: Language Toggle only */}
+        <div className="md:hidden">
+          <LanguageToggle />
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -84,83 +86,17 @@ export function Header({ currentRoute, navigate }: HeaderProps) {
           })}
         </nav>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex items-center gap-4">
+          <LanguageToggle />
           <button 
-            onClick={() => {
-              navigate('admission');
-              setIsMobileMenuOpen(false);
-            }}
+            onClick={() => navigate('admission')}
             className="font-bold text-[15px] bg-secondary-container text-white px-7 py-2.5 rounded-lg flex items-center gap-2 hover:bg-secondary transition-all shadow-sm focus:ring-2 focus:ring-secondary-container focus:ring-offset-2 cursor-pointer"
           >
-            <span>Admission</span>
+            <span>{t('common.admission')}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
-
-        <button 
-          className="md:hidden text-primary p-2 hover:bg-primary/5 rounded-lg transition-colors cursor-pointer"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
       </div>
-
-      {/* Mobile Menu Sheet - slides from left */}
-      <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen} side="left">
-        <SheetContent className="w-[280px] max-w-[85vw] bg-surface-container-lowest rounded-r-xl border-r border-outline-variant p-6 shadow-xl h-full">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="ZPPS SRP CAMP Logo" className="w-10 h-10 object-contain" />
-              <div className="flex flex-col leading-tight">
-                <span className="text-[15px] font-bold text-primary tracking-tight">ZPPS SRP CAMP</span>
-                <span className="text-[10px] text-primary/70" style={{ fontFamily: 'var(--font-marathi)' }}>
-                  जि.प.प्रा.शाळा एस.आर.पी. कॅम्प
-                </span>
-              </div>
-            </div>
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-on-surface-variant p-2 hover:bg-primary/5 rounded-lg transition-colors cursor-pointer"
-              aria-label="Close menu"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          
-          <nav className="flex flex-col gap-2">
-            {navItems.map((item) => {
-              const isActive = 
-                  (currentRoute === item.route) || 
-                  (currentRoute === 'achievements' && item.route === 'about');
-
-              return (
-                <button
-                  key={item.label}
-                  onClick={(e) => handleNavClick(e, item.route)}
-                  className={`font-semibold text-left text-lg px-4 py-3 rounded-lg transition-all cursor-pointer ${
-                    isActive 
-                      ? 'text-primary bg-primary/10 border-l-4 border-primary' 
-                      : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-            <button 
-              onClick={() => {
-                navigate('admission');
-                setIsMobileMenuOpen(false);
-              }}
-              className="mt-4 font-bold text-lg bg-secondary-container text-white px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-secondary transition-all shadow-sm cursor-pointer"
-            >
-              <span>Admission</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </nav>
-        </SheetContent>
-      </Sheet>
     </header>
   );
 }

@@ -1,15 +1,17 @@
 import { School, Book, Monitor, Droplets, Baby, Swords, Shield, Car, Star } from 'lucide-react';
 import { useData } from '../context/DataContext';
+import { useTranslation } from '../hooks/useTranslation';
 
 export function Facilities() {
   const { images } = useData();
+  const { t } = useTranslation();
 
   return (
-    <div className="pt-20 flex-grow flex flex-col items-center w-full bg-background">
+    <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background flex flex-col items-center w-full">
       <main className="flex-grow flex flex-col items-center w-full py-8 md:py-16 px-4 md:px-10 max-w-7xl mx-auto space-y-8 md:space-y-16">
         <section className="w-full text-center space-y-4 max-w-3xl mb-4 md:mb-8">
-          <h1 className="text-3xl md:text-5xl font-display-lg text-primary leading-tight">Our Facilities</h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">We provide a safe, well-equipped, and supportive environment for students to learn and thrive.</p>
+          <h1 className="text-3xl md:text-5xl font-display-lg text-primary leading-tight">{t('facilities.title')}</h1>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">{t('facilities.subtitle')}</p>
         </section>
 
         <div className="w-full h-64 md:h-96 rounded-2xl overflow-hidden relative shadow-sm border border-outline-variant">

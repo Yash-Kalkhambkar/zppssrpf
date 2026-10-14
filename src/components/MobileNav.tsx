@@ -1,4 +1,5 @@
 import { Home, Users, Building, Mail, GraduationCap } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface MobileNavProps {
   currentRoute: string;
@@ -6,12 +7,14 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ currentRoute, navigate }: MobileNavProps) {
+  const { t } = useTranslation();
+
   const navItems = [
-    { label: 'Home', route: 'home', icon: Home },
-    { label: 'About', route: 'achievements', icon: Users },
-    { label: 'Facilities', route: 'facilities', icon: Building },
-    { label: 'Contact', route: 'contact', icon: Mail },
-    { label: 'Admission', route: 'admission', icon: GraduationCap },
+    { label: t('common.home'), route: 'home', icon: Home },
+    { label: t('common.about'), route: 'achievements', icon: Users },
+    { label: t('common.facilities'), route: 'facilities', icon: Building },
+    { label: t('common.contact'), route: 'contact', icon: Mail },
+    { label: t('common.admission'), route: 'admission', icon: GraduationCap },
   ];
 
   return (

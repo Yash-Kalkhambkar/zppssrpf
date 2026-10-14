@@ -39,7 +39,7 @@ export function Admin({ navigate }: AdminProps) {
   };
 
   return (
-    <div className="pt-20 flex-grow bg-background flex flex-col">
+    <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background flex flex-col">
       <div className="w-full bg-surface-container-low border-b border-outline-variant">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
           <h1 className="font-headline-lg text-primary flex items-center gap-2">
