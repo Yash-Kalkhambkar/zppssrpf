@@ -118,3 +118,18 @@ a[role='button'] {
   min-height: 44px;
   min-width: 44px;
 }
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Marathi font class */
+.font-marathi {
+  font-family: var(--font-marathi);
+}

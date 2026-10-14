@@ -7,9 +7,9 @@ export function Achievements() {
   return (
     <div className="pt-20 flex-grow bg-background">
       {/* Hero Section */}
-      <section className="bg-surface-container py-16 md:py-24 px-6 md:px-10 relative overflow-hidden">
+      <section className="bg-surface-container py-8 md:py-16 px-4 md:px-10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <h1 className="font-display-lg text-[2.5rem] leading-tight md:text-display-lg text-primary mb-6">
+          <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 md:mb-6 leading-tight">
             Our Journey of Excellence
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
@@ -20,24 +20,21 @@ export function Achievements() {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-fixed opacity-30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-16 md:py-24 px-6 md:px-10 bg-surface">
+      {/* Timeline Section - mobile-first vertical layout */}
+      <section className="py-8 md:py-16 px-4 md:px-10 bg-surface">
         <div className="max-w-5xl mx-auto">
           <div className="relative w-full">
 
-            {/* Vertical center line */}
+            {/* Vertical line - always on left side on mobile, center on desktop */}
             <div className="absolute top-0 bottom-0 left-7 md:left-1/2 w-0.5 bg-outline-variant md:-translate-x-px" />
 
-            <div className="flex flex-col gap-10 md:gap-12">
+            <div className="flex flex-col gap-8 md:gap-12">
               {timelineEvents.map((event) => {
                 const isLeft = event.align === 'left';
                 return (
                   <div key={event.id} className="relative flex items-start md:items-center">
 
-                    {/* ── MOBILE layout: node left, card right ── */}
-                    {/* ── DESKTOP layout: alternating ── */}
-
-                    {/* Left card slot (desktop only, shown when align=left) */}
+                    {/* Desktop: Left card slot (shown when align=left) */}
                     <div className={`hidden md:flex md:w-5/12 md:justify-end md:pr-10 ${isLeft ? '' : 'invisible'}`}>
                       {isLeft && (
                         <div className={`rounded-2xl shadow-sm px-6 py-6 hover:shadow-md transition-shadow w-full ${
@@ -56,15 +53,15 @@ export function Achievements() {
                       )}
                     </div>
 
-                    {/* Year node — sits on the center line */}
-                    <div className={`z-10 flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-full shadow-md font-bold text-sm text-white ${
+                    {/* Year badge - larger on mobile (w-16 h-16), left-aligned */}
+                    <div className={`z-10 flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-full shadow-md font-bold text-sm text-white ${
                       event.highlight ? 'bg-secondary' :
                       isLeft ? 'bg-primary' : 'bg-secondary'
                     }`}>
                       {event.year}
                     </div>
 
-                    {/* Right card slot — mobile always shows here, desktop only when align=right */}
+                    {/* Card - mobile: always right of badge, desktop: right side only when align=right */}
                     <div className={`md:w-5/12 md:pl-10 pl-5 flex-1 ${isLeft ? 'md:invisible md:pointer-events-none' : ''}`}>
                       <div className={`rounded-2xl shadow-sm px-6 py-6 hover:shadow-md transition-shadow ${
                         event.highlight ? 'border-2 border-secondary relative' : 'border border-outline-variant'

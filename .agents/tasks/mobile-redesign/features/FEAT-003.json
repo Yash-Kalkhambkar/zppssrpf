@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Redesign all public-facing pages (Home, Achievements, Facilities, Contact, Admission) for mobile-first responsive experience with improved layouts, larger touch targets, and better visual hierarchy. Depends on FEAT-001 for UI components and FEAT-002 for navigation.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "1. Redesign src/pages/Home.tsx: Hero section with logo overlay on school image, responsive typography (text-4xl md:text-6xl). Replace 4-column stat cards with 2x2 grid on mobile (grid-cols-2 md:grid-cols-4). Notice board cards with horizontal scroll on mobile (overflow-x-auto snap-x). Highlights section as vertical stack on mobile, 2-col grid on tablet. Use motion library for subtle entrance animations.",
     "2. Redesign src/pages/Achievements.tsx: Vertical timeline with large year badges on mobile. Change from horizontal alternating layout to single vertical column on mobile with year nodes (w-16 h-16) on left, cards on right. On desktop (md:), keep alternating left/right layout. Use motion library for scroll-triggered animations. Marathi text (font-marathi) for translated content.",
@@ -36,5 +36,5 @@
     "- Check public/manifest.json exists and is valid JSON"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All mobile-first redesigns implemented successfully:\n- Home: 2x2 stat grid on mobile, horizontal scroll notices with snap points and scrollbar-hide utility\n- Achievements: Vertical timeline with w-16 h-16 year badges on left on mobile, alternating on desktop\n- Facilities: Single column on mobile, larger icons (w-10 h-10), Marathi translations with font-marathi class, full-width mid-day meal image on mobile\n- Contact: Full-width form with py-4 text-lg inputs on mobile, WhatsApp FAB (56x56 #25D366) fixed bottom-right, click-to-call/email links\n- Admission: 4-step wizard (Student/Parent/Address/Review) with progress indicator, Previous/Next buttons, inline validation, large touch-friendly inputs (py-4 text-lg)\n- PWA: manifest.json created with correct metadata, linked in index.html with theme-color meta tag\n- All pages use consistent mobile padding (px-4 md:px-10), responsive typography (text-3xl md:text-5xl for h1, text-2xl md:text-4xl for h2)\n- Build and TypeScript checks pass without errors"
 }

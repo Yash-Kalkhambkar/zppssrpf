@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, ArrowRight, Map, School } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, Map, School, MessageCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
@@ -38,35 +38,41 @@ export function Contact({ navigate }: ContactProps) {
     }
   };
 
+  const handleWhatsAppClick = () => {
+    // WhatsApp link with placeholder number
+    window.open('https://wa.me/919876543210?text=Hello%20ZPPS%20SRP%20CAMP', '_blank');
+  };
+
   return (
     <div className="pt-20 flex-grow bg-background flex flex-col">
-      <main className="flex-grow w-full max-w-7xl mx-auto px-6 md:px-10 py-16">
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-16">
         {/* Page Header */}
-        <div className="mb-12 md:mb-16">
-          <h1 className="font-display-lg text-[2.5rem] leading-tight md:text-display-lg text-primary mb-4">Contact Us</h1>
+        <div className="mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 leading-tight">Contact Us</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
             We welcome inquiries from parents, community members, and prospective students. Please use the information below to reach out to our administration.
           </p>
         </div>
 
-        {/* Bento Grid Layout */}
+        {/* Mobile: Full-width stacked layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-          {/* Contact Form */}
-          <div className="md:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-2xl p-8 lg:p-10 hover:shadow-md transition-shadow">
-            <h2 className="font-headline-md text-headline-md text-primary border-b border-outline-variant pb-6 mb-8">Send a Message</h2>
+          {/* Contact Form - full-width on mobile */}
+          <div className="md:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 md:p-8 lg:p-10 hover:shadow-md transition-shadow">
+            <h2 className="text-2xl md:text-4xl font-headline-md text-primary border-b border-outline-variant pb-4 md:pb-6 mb-6 md:mb-8">Send a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Full-width single column on mobile */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block font-label-md text-label-md text-on-surface mb-2" htmlFor="name">Full Name</label>
                   <input 
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright" 
+                    className="w-full border border-outline-variant rounded-lg px-4 py-4 text-lg md:text-base font-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright" 
                     id="name" name="name" placeholder="Enter your full name" type="text" required
                   />
                 </div>
                 <div>
                   <label className="block font-label-md text-label-md text-on-surface mb-2" htmlFor="email">Email Address</label>
                   <input 
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright" 
+                    className="w-full border border-outline-variant rounded-lg px-4 py-4 text-lg md:text-base font-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright" 
                     id="email" name="email" placeholder="Enter your email" type="email" required
                   />
                 </div>
@@ -74,7 +80,7 @@ export function Contact({ navigate }: ContactProps) {
               <div>
                 <label className="block font-label-md text-label-md text-on-surface mb-2" htmlFor="subject">Subject</label>
                 <select 
-                  className="w-full border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright text-on-surface-variant cursor-pointer" 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-4 text-lg md:text-base font-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright text-on-surface-variant cursor-pointer" 
                   id="subject" name="subject"
                 >
                   <option>General Inquiry</option>
@@ -86,7 +92,7 @@ export function Contact({ navigate }: ContactProps) {
               <div>
                 <label className="block font-label-md text-label-md text-on-surface mb-2" htmlFor="message">Message</label>
                 <textarea 
-                  className="w-full border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright resize-none" 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-4 text-lg md:text-base font-body-md focus:border-primary focus:ring-2 focus:ring-primary/50 outline-none transition-all bg-surface-bright resize-none" 
                   id="message" name="message" placeholder="How can we help you?" rows={5} required
                 />
               </div>
@@ -100,12 +106,12 @@ export function Contact({ navigate }: ContactProps) {
             </form>
           </div>
 
-          {/* Side Information Column */}
+          {/* Side Information Column - stacks on mobile */}
           <div className="md:col-span-5 flex flex-col gap-8">
             {/* Contact Details Card */}
-            <div className="bg-surface-container-low border border-outline-variant rounded-2xl p-8 hover:shadow-md transition-shadow">
-              <h3 className="font-headline-md text-headline-md text-primary mb-8">Contact Information</h3>
-              <div className="space-y-8">
+            <div className="bg-surface-container-low border border-outline-variant rounded-2xl p-6 md:p-8 hover:shadow-md transition-shadow">
+              <h3 className="text-2xl md:text-4xl font-headline-md text-primary mb-6 md:mb-8">Contact Information</h3>
+              <div className="space-y-6 md:space-y-8">
                 <div className="flex items-start gap-4">
                   <div className="text-secondary bg-secondary-fixed p-3 rounded-full shadow-sm">
                     <MapPin className="w-6 h-6" />
@@ -126,9 +132,9 @@ export function Contact({ navigate }: ContactProps) {
                   </div>
                   <div>
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">Phone</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant">
+                    <a href="tel:+919876543210" className="font-body-md text-body-md text-on-surface-variant hover:text-secondary-container transition-colors">
                       +91 98765 43210
-                    </p>
+                    </a>
                     <p className="font-caption text-caption text-outline mt-1 block">Mon-Fri, 9:00 AM - 4:00 PM</p>
                   </div>
                 </div>
@@ -139,16 +145,16 @@ export function Contact({ navigate }: ContactProps) {
                   </div>
                   <div>
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">Email</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant">
+                    <a href="mailto:admin@zppssrrcamp.edu.in" className="font-body-md text-body-md text-on-surface-variant hover:text-secondary-container transition-colors">
                       admin@zppssrrcamp.edu.in
-                    </p>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Admission Highlight Card */}
-            <div className="bg-secondary text-on-secondary rounded-2xl p-8 hover:shadow-lg transition-shadow relative overflow-hidden flex flex-col items-start">
+            <div className="bg-secondary text-on-secondary rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow relative overflow-hidden flex flex-col items-start">
               <div className="absolute -right-4 -top-4 opacity-10">
                 <School className="w-40 h-40" />
               </div>
@@ -170,7 +176,7 @@ export function Contact({ navigate }: ContactProps) {
 
           {/* Full Width Map Section */}
           <div className="md:col-span-12 mt-6">
-            <div className="border border-outline-variant rounded-2xl overflow-hidden h-[400px] relative bg-surface-container-low shadow-sm">
+            <div className="border border-outline-variant rounded-2xl overflow-hidden h-64 md:h-96 relative bg-surface-container-low shadow-sm">
               <div className="absolute inset-0 flex items-center justify-center flex-col text-outline z-10">
                 <div className="bg-surface-container-lowest/80 backdrop-blur-sm p-6 rounded-2xl flex flex-col items-center border border-outline-variant/50 shadow-sm">
                   <Map className="w-12 h-12 mb-3 text-secondary" />
@@ -187,6 +193,15 @@ export function Contact({ navigate }: ContactProps) {
           </div>
         </div>
       </main>
+
+      {/* WhatsApp FAB - fixed bottom-right on mobile */}
+      <button
+        onClick={handleWhatsAppClick}
+        className="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center z-50 focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 cursor-pointer"
+        aria-label="Contact us on WhatsApp"
+      >
+        <MessageCircle className="w-7 h-7 fill-current" />
+      </button>
     </div>
   );
 }
