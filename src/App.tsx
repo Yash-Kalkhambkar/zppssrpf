@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { MobileNav } from './components/MobileNav';
 import { Home } from './pages/Home';
 import { Achievements } from './pages/Achievements';
 import { Facilities } from './pages/Facilities';
@@ -23,7 +24,7 @@ export default function App() {
       <DataProvider>
         <div className="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden min-h-screen flex flex-col">
           <Header currentRoute={currentRoute} navigate={navigate} />
-          <main className="flex-grow flex flex-col">
+          <main className="flex-grow flex flex-col pb-20 md:pb-0">
             {currentRoute === 'home' && <Home navigate={navigate} />}
             {currentRoute === 'achievements' && <Achievements />}
             {currentRoute === 'facilities' && <Facilities />}
@@ -33,6 +34,7 @@ export default function App() {
             {/* Render Home as fallback if route doesn't match */}
             {currentRoute !== 'home' && currentRoute !== 'achievements' && currentRoute !== 'facilities' && currentRoute !== 'contact' && currentRoute !== 'admission' && currentRoute !== 'admin' && <Home navigate={navigate} />}
           </main>
+          {currentRoute !== 'admin' && <MobileNav currentRoute={currentRoute} navigate={navigate} />}
           <Footer navigate={navigate} />
         </div>
       </DataProvider>

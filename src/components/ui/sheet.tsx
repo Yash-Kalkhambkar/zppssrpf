@@ -6,9 +6,38 @@ interface SheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   children: React.ReactNode;
+  side?: 'bottom' | 'left' | 'right';
 }
 
-const Sheet: React.FC<SheetProps> = ({ open, onOpenChange, children }) => {
+const Sheet: React.FC<SheetProps> = ({ open, onOpenChange, children, side = 'bottom' }) => {
+  const getAnimationProps = () => {
+    switch (side) {
+      case 'left':
+        return {
+          initial: { x: '-100%' },
+          animate: { x: 0 },
+          exit: { x: '-100%' },
+          className: 'fixed left-0 top-0 bottom-0 z-50'
+        };
+      case 'right':
+        return {
+          initial: { x: '100%' },
+          animate: { x: 0 },
+          exit: { x: '100%' },
+          className: 'fixed right-0 top-0 bottom-0 z-50'
+        };
+      default: // bottom
+        return {
+          initial: { y: '100%' },
+          animate: { y: 0 },
+          exit: { y: '100%' },
+          className: 'fixed inset-x-0 bottom-0 z-50'
+        };
+    }
+  };
+
+  const animationProps = getAnimationProps();
+
   return (
     <AnimatePresence>
       {open && (
@@ -24,11 +53,11 @@ const Sheet: React.FC<SheetProps> = ({ open, onOpenChange, children }) => {
           />
           {/* Sheet Content */}
           <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
+            initial={animationProps.initial}
+            animate={animationProps.animate}
+            exit={animationProps.exit}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed inset-x-0 bottom-0 z-50"
+            className={animationProps.className}
           >
             {children}
           </motion.div>

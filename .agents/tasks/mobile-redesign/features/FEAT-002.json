@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Create mobile-first navigation system with fixed bottom nav bar and redesign Header/Footer components for mobile optimization. Add Noto Sans Devanagari font for Marathi content and mobile-first base styles. Depends on FEAT-001 for UI components.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "1. Add Noto Sans Devanagari Google Font import to src/index.css (add @import url at top before @import tailwindcss)",
     "2. Update @theme block in src/index.css to add --font-marathi: 'Noto Sans Devanagari', sans-serif token",
@@ -40,5 +40,5 @@
     "- Verify all tap targets are easily clickable (44x44px minimum)"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All steps completed successfully. Created MobileNav component with 5 tabs (Home, About, Facilities, Contact, Admission) that appears fixed at bottom on mobile (<768px) and hides on admin route. Redesigned Header with logo image import (zpps-logo.png), bilingual school name (English + Marathi), and Sheet drawer sliding from left for mobile menu. Updated Footer with clickable tel:, mailto:, and WhatsApp links. Added Noto Sans Devanagari font for Marathi content. Enhanced Sheet component to support side variants (left/right/bottom). Added pb-20 md:pb-0 to main element to prevent bottom nav overlap. Created src/vite-env.d.ts for TypeScript image import declarations. Build and lint pass without errors. Logo file was named zpps-logo.png (not logo.png as documented). Manual testing needed: verify mobile viewport behavior at 375px width, test hamburger menu Sheet animation, verify MobileNav tab navigation, test clickable contact links in Footer."
 }
