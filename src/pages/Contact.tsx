@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, ArrowRight, Map, School, MessageCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface ContactProps {
   navigate: (route: string) => void;
@@ -8,6 +9,7 @@ interface ContactProps {
 
 export function Contact({ navigate }: ContactProps) {
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,9 +50,9 @@ export function Contact({ navigate }: ContactProps) {
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-16">
         {/* Page Header */}
         <div className="mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 leading-tight">Contact Us</h1>
+          <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 leading-tight">{t('contact.title')}</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-            We welcome inquiries from parents, community members, and prospective students. Please use the information below to reach out to our administration.
+            {t('contact.subtitle')}
           </p>
         </div>
 

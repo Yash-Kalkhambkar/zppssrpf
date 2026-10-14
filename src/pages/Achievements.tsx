@@ -1,8 +1,10 @@
 import { Award } from 'lucide-react';
 import { useData } from '../context/DataContext';
+import { useTranslation } from '../hooks/useTranslation';
 
 export function Achievements() {
   const { timelineEvents } = useData();
+  const { t } = useTranslation();
 
   return (
     <div className="pt-20 pb-20 md:pb-0 flex-grow bg-background">
@@ -10,10 +12,10 @@ export function Achievements() {
       <section className="bg-surface-container py-8 md:py-16 px-4 md:px-10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 text-center">
           <h1 className="text-3xl md:text-5xl font-display-lg text-primary mb-4 md:mb-6 leading-tight">
-            Our Journey of Excellence
+            {t('achievements.title')}
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-            Building a legacy of quality education and community empowerment in Solapur North since 1992.
+            {t('achievements.subtitle')}
           </p>
         </div>
         <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-fixed opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />

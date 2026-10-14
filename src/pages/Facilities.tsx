@@ -29,9 +29,9 @@ export function Facilities() {
               <School className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Classrooms</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.classrooms')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                9 well-maintained classrooms providing a comfortable learning space.
+                {t('facilities.classroomsDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">९ सुसज्ज वर्गखोल्या</p>
             </div>
@@ -42,9 +42,9 @@ export function Facilities() {
               <Book className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Library</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.library')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Library equipped with 170+ books for students.
+                {t('facilities.libraryDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">१७०+ पुस्तकांसह ग्रंथालय</p>
             </div>
@@ -55,9 +55,9 @@ export function Facilities() {
               <Monitor className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Computer Learning</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.computer')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Computers available for digital learning and literacy.
+                {t('facilities.computerDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">संगणक शिक्षण सुविधा</p>
             </div>
@@ -68,9 +68,9 @@ export function Facilities() {
               <Droplets className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Drinking Water</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.water')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Functional tap water providing clean drinking water.
+                {t('facilities.waterDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">पिण्यासाठी शुद्ध नळाचे पाणी</p>
             </div>
@@ -81,9 +81,9 @@ export function Facilities() {
               <Baby className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Sanitation</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.sanitation')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Separate well-maintained Boys/Girls Toilets (2 each).
+                {t('facilities.sanitationDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">मुले/मुलींसाठी स्वतंत्र स्वच्छतागृहे</p>
             </div>
@@ -94,9 +94,9 @@ export function Facilities() {
               <Swords className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Playground</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.playground')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Spacious playground for physical education and recreation.
+                {t('facilities.playgroundDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">खेळाचे मैदान</p>
             </div>
@@ -107,9 +107,9 @@ export function Facilities() {
               <Shield className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Campus Security</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.security')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                The school premises are secured by a robust boundary wall ensuring safety for all students.
+                {t('facilities.securityDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">संरक्षक भिंत सुरक्षा</p>
             </div>
@@ -120,9 +120,9 @@ export function Facilities() {
               <Car className="w-7 h-7 md:w-10 md:h-10" />
             </div>
             <div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">Easy Accessibility</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface mb-2">{t('facilities.accessibility')}</h3>
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                The school is easily approachable by all-weather roads, ensuring safe travel year-round.
+                {t('facilities.accessibilityDesc')}
               </p>
               <p className="font-marathi text-sm text-on-surface-variant opacity-80 mt-2">शाळा सर्व हवामानात अनुकूल रस्त्यांनी जोडलेली आहे.</p>
             </div>
@@ -134,10 +134,10 @@ export function Facilities() {
           <div className="absolute top-0 left-0 w-2 h-full bg-secondary"></div>
           <div className="flex-1 space-y-4 md:space-y-5">
             <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-1.5 rounded-full font-label-md text-sm mb-2 shadow-sm border border-secondary/20">
-              <Star className="w-4 h-4 fill-current" /> Special Feature
+              <Star className="w-4 h-4 fill-current" /> {t('facilities.specialFeature')}
             </div>
-            <h2 className="text-2xl md:text-4xl font-headline-lg text-primary">Mid-Day Meal Program</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">Nutritious mid-day meals are provided and freshly prepared on premises to ensure health and well-being of our students.</p>
+            <h2 className="text-2xl md:text-4xl font-headline-lg text-primary">{t('facilities.midDayMeal')}</h2>
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{t('facilities.midDayMealDesc')}</p>
             <p className="font-marathi text-[15px] text-on-surface-variant mt-2 opacity-90">शाळेच्या आवारातच पौष्टिक शालेय पोषण आहार तयार करून दिला जातो.</p>
           </div>
           <div className="w-full md:w-1/2 h-64 md:h-72 rounded-xl overflow-hidden relative shadow-sm border border-outline-variant">
