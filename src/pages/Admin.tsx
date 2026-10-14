@@ -17,7 +17,7 @@ export function Admin({ navigate }: AdminProps) {
   const [activeTab, setActiveTab] = useState<'notices' | 'highlights' | 'timeline' | 'images' | 'admissions' | 'inquiries'>('notices');
   const [menuOpen, setMenuOpen] = useState(false);
   const data = useData();
-  const { user, isMock, signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const { toasts, showToast, removeToast } = useToast();
 
   if (!user) {
@@ -44,7 +44,7 @@ export function Admin({ navigate }: AdminProps) {
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
           <h1 className="font-headline-lg text-primary flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-primary" />
-            School Website Manager {isMock && <span className="text-sm bg-error-container text-on-error-container px-2 py-1 rounded-full font-label-sm ml-2">Preview Mode</span>}
+            School Website Manager
           </h1>
           <div className="flex items-center gap-4">
             {/* Desktop Tabs */}
@@ -169,7 +169,6 @@ function LoginForm() {
       }
 
       // Login successful - AuthContext will handle the state update
-      console.log('Login successful:', data.user.email);
       
     } catch (err: any) {
       console.error('Login error:', err);
@@ -879,27 +878,9 @@ function TimelineManager({ showToast }: ManagerProps) {
 function AdmissionsManager() {
   const [admissions, setAdmissions] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const { isMock } = useAuth();
 
   React.useEffect(() => {
     async function fetchAdmissions() {
-      if (isMock) {
-        setAdmissions([
-          {
-            id: 'mock-1',
-            student_first_name: 'John',
-            student_last_name: 'Doe',
-            grade_applying: '1',
-            parent_name: 'Jane Doe',
-            contact_number: '1234567890',
-            status: 'pending',
-            created_at: new Date().toISOString()
-          }
-        ]);
-        setLoading(false);
-        return;
-      }
-      
       const { supabase, isSupabaseConfigured } = await import('../lib/supabase');
       if (isSupabaseConfigured) {
         const { data } = await supabase.from('admissions').select('*').order('created_at', { ascending: false });
@@ -908,7 +889,7 @@ function AdmissionsManager() {
       setLoading(false);
     }
     fetchAdmissions();
-  }, [isMock]);
+  }, []);
 
   const count = admissions.length;
 
@@ -954,25 +935,9 @@ function AdmissionsManager() {
 function InquiriesManager() {
   const [inquiries, setInquiries] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const { isMock } = useAuth();
 
   React.useEffect(() => {
     async function fetchInquiries() {
-      if (isMock) {
-        setInquiries([
-          {
-            id: 'mock-1',
-            name: 'Alice Smith',
-            email: 'alice@example.com',
-            subject: 'Admission inquiry',
-            message: 'When does the admission process start?',
-            created_at: new Date().toISOString()
-          }
-        ]);
-        setLoading(false);
-        return;
-      }
-      
       const { supabase, isSupabaseConfigured } = await import('../lib/supabase');
       if (isSupabaseConfigured) {
         const { data } = await supabase.from('contact_inquiries').select('*').order('created_at', { ascending: false });
@@ -981,7 +946,7 @@ function InquiriesManager() {
       setLoading(false);
     }
     fetchInquiries();
-  }, [isMock]);
+  }, []);
 
   const count = inquiries.length;
 

@@ -28,15 +28,15 @@ export function MobileNav({ currentRoute, navigate }: MobileNavProps) {
             <button
               key={item.route}
               onClick={() => navigate(item.route)}
-              className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-all cursor-pointer ${
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg transition-all cursor-pointer min-w-[64px] ${
                 isActive
                   ? 'text-primary bg-primary/10'
                   : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'
               }`}
               aria-label={item.label}
             >
-              <Icon className="w-6 h-6" strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-[11px] font-semibold">{item.label}</span>
+              <Icon className="w-6 h-6 flex-shrink-0" strokeWidth={isActive ? 2.5 : 2} />
+              <span className="text-[11px] font-semibold text-center whitespace-nowrap">{item.label}</span>
             </button>
           );
         })}

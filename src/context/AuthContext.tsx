@@ -7,8 +7,6 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signOut: () => Promise<void>;
-  isMock: boolean;
-  mockLogin: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -16,24 +14,15 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   signOut: async () => {},
-  isMock: false,
-  mockLogin: () => {}
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isMock, setIsMock] = useState(false);
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
-      // Mock auth state for preview
-      const storedMock = localStorage.getItem('mockSession');
-      if (storedMock === 'true') {
-        setIsMock(true);
-        setUser({ id: 'mock-user', email: 'principal@school.com' } as User);
-      }
       setLoading(false);
       return;
     }
@@ -54,24 +43,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     if (!isSupabaseConfigured) {
-      localStorage.removeItem('mockSession');
-      setIsMock(false);
-      setUser(null);
       return;
     }
     await supabase.auth.signOut();
   };
 
-  const mockLogin = () => {
-    if (!isSupabaseConfigured) {
-      localStorage.setItem('mockSession', 'true');
-      setIsMock(true);
-      setUser({ id: 'mock-user', email: 'principal@school.com' } as User);
-    }
-  };
-
   return (
-    <AuthContext.Provider value={{ session, user, loading, signOut, isMock, mockLogin }}>
+    <AuthContext.Provider value={{ session, user, loading, signOut }}>
       {!loading && children}
     </AuthContext.Provider>
   );
